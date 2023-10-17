@@ -1,9 +1,9 @@
 "use client";
 
 import { ChevronsLeftRight } from "lucide-react";
+import { useUser, SignOutButton } from "@clerk/clerk-react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,25 +12,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { use } from "react";
-import { SignOutButton, useUser } from "@clerk/clerk-react";
 
 export const UserItem = () => {
   const { user } = useUser();
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <div
           role="button"
           className="flex items-center text-sm p-3 w-full hover:bg-primary/5"
         >
-          <div className="gap-x-2 flex items-center max-w-[150]">
+          <div className="gap-x-2 flex items-center max-w-[150px]">
             <Avatar className="h-5 w-5">
               <AvatarImage src={user?.imageUrl} />
             </Avatar>
             <span className="text-start font-medium line-clamp-1">
-              {user?.fullName}'s Otion
+              {user?.fullName}&apos;s Jotion
             </span>
           </div>
           <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
@@ -53,12 +51,17 @@ export const UserItem = () => {
               </Avatar>
             </div>
             <div className="space-y-1">
-              <p className="text-sm line-clamp-1">{user?.fullName}'s Otion</p>
+              <p className="text-sm line-clamp-1">
+                {user?.fullName}&apos;s Jotion
+              </p>
             </div>
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild className="w-full cursor-pointer">
+        <DropdownMenuItem
+          asChild
+          className="w-full cursor-pointer text-muted-foreground"
+        >
           <SignOutButton>Log out</SignOutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
